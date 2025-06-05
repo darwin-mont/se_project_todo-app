@@ -1,17 +1,23 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+Web app created to keep track of task, duties of tthat the user inputs onto it.
+Able to show simple text content and funtionalities.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+Simple TODO webapp able to add, keep track, alert due dates and deletion of tasks.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+Technologies used in this projects are: html, css, javascript.
+Mainly worked on javascript using OOP methods for the restructure of the base code.
+Used classes, private and public methods.
+export and import between modules to move data.
 
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
-- ADD LINK HERE
+[Simple TODO App](https://./)
+
+https://./

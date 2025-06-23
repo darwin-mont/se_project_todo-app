@@ -27,6 +27,7 @@ const section = new Section({
   renderer: (item) => {
     const todoEl = generateTodo(item);
     todosList.append(todoEl);
+    return todoEl;
   },
   containerSelector: ".todos__list",
 });
@@ -38,7 +39,7 @@ const addTodoPopup = new PopupWithForm({
   handleFormSubmit: (inputValues, evt) => {
     const name = evt.target.name.value;
     const dateInput = evt.target.date.value;
-
+    todoCounter.updateTotal(true); // Update the total count of todos
     //validate inputs
     if (!name) return;
 
@@ -77,17 +78,15 @@ addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
 });
 
-const openModal = (modal) => {
-  modal.classList.add("popup_visible");
-};
+addTodoCloseBtn.addEventListener("click", () => {
+  addTodoPopup.close();
+  newTodoValidator.resetValidation();
+});
 
 ///////// ADDING A NEW TODO /////////
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 
-initialTodos.forEach((item) => {
-  const todo = generateTodo(item);
-  todosList.append(todo);
-});
+section.renderItems();
 
 newTodoValidator.enableValidation();

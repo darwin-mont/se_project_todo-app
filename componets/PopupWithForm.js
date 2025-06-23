@@ -1,4 +1,5 @@
 import Popup from "./Popup.js";
+import TodoCounter from "./TodoCounter.js";
 
 class PopupWithForm extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {

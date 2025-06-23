@@ -23,7 +23,7 @@ class TodoCounter {
   // Call this when a to-do is deleted, or when a to-do is
   // created via the form.
   updateTotal = (increment) => {
-    this._completed += increment ? 1 : -1; // increment or decrement the completed count
+    this._total += increment ? 1 : -1; // increment or decrement the completed count
     this._updateText();
   };
 

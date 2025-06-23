@@ -12,9 +12,9 @@ class Todo {
       this._handleDelete(this._completed);
     });
 
-    this._todoCheckboxEl?.addEventListener("change", () => {
+    this._todoCheckboxEl.addEventListener("change", () => {
       this._data.completed = !this._data.completed;
-      this._handleCheck(this._completed);
+      this._handleCheck(this._data.completed);
     });
   }
 

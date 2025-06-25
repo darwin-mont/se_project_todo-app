@@ -12,7 +12,7 @@ const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 const addTodoButton = document.querySelector(".button_action_add");
 const todosList = document.querySelector(".todos__list");
 const addTodoPopupEl = document.querySelector("#add-todo-popup");
-const addTodoForm = addTodoPopupEl.querySelector(".popup__form");
+const addTodoForm = document.forms["add-todo-form"];
 const addTodoCloseBtn = addTodoPopupEl.querySelector(".popup__close");
 
 //Generate Todo function
@@ -26,7 +26,7 @@ const section = new Section({
   items: initialTodos,
   renderer: (item) => {
     const todoEl = generateTodo(item);
-    todosList.append(todoEl);
+    generateTodo;
     return todoEl;
   },
   containerSelector: ".todos__list",
@@ -36,12 +36,8 @@ const section = new Section({
 
 const addTodoPopup = new PopupWithForm({
   popupSelector: "#add-todo-popup",
-  handleFormSubmit: (inputValues, evt) => {
-    const name = evt.target.name.value;
-    const dateInput = evt.target.date.value;
+  handleFormSubmit: (inputValues) => {
     todoCounter.updateTotal(true); // Update the total count of todos
-    //validate inputs
-    if (!name) return;
 
     const newTodo = {
       name: inputValues.name || "new todo",
@@ -49,6 +45,8 @@ const addTodoPopup = new PopupWithForm({
       id: uuidv4(),
       completed: false,
     };
+
+    const dateInput = inputValues.date;
 
     if (dateInput) {
       const date = new Date(dateInput);
@@ -67,26 +65,19 @@ function handleCheck(completed) {
 }
 
 function handleDelete(completed) {
+  todoCounter.updateTotal(false); // every time the total count goes down
   if (completed) {
-    todoCounter.updateTotal(false);
+    todoCounter.updateCompleted(false); // if checked then update the selected count
   }
 }
 
 addTodoPopup.setEventListeners();
-
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
-});
-
-addTodoCloseBtn.addEventListener("click", () => {
-  addTodoPopup.close();
-  newTodoValidator.resetValidation();
 });
 
 ///////// ADDING A NEW TODO /////////
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
-
 section.renderItems();
-
 newTodoValidator.enableValidation();
